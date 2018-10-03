@@ -8,8 +8,8 @@ pipeline {
     
     agent {
         dockerfile {
-            filename 'centos7/Dockerfile'
-            dir '.'
+            filename 'Dockerfile'
+            dir 'centos7/'
             label env.docker_image_name
         }
     }
