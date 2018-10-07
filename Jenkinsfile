@@ -20,7 +20,7 @@ pipeline {
                     dir('Chapter01/mysite') {
                         sh 'pwd'
                         sh 'ls -lrt /'
-                        sh 'sh /start_postgres.sh'
+                        sh 'sh /start_postgres.sh &'
                         sh 'pip3.6 --version'
                         sh 'python3.6 manage.py jenkins'
                     }
