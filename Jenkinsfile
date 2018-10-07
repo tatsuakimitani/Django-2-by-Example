@@ -21,7 +21,7 @@ pipeline {
                         sh 'pwd'
                         sh 'ls -lrt'
                         sh 'pip3.6 --version'
-                        sh 'python3.6 manage.py test'
+                        sh 'python3.6 manage.py jenkins'
                     }
                 }
             }

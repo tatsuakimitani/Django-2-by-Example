@@ -29,7 +29,6 @@ RUN pip3.6 install -r requirements.txt
 RUN sed -i -e 's/^#\s%wheel\s*ALL=(ALL)\s*ALL$/%wheel\tALL=(ALL)\tALL/g' /etc/sudoers
 RUN sed -i -e 's/^#\s%wheel\s*ALL=(ALL)\s*NOPASSWD: ALL$/jenkins\tALL=(ALL)\tNOPASSWD: ALL/g' /etc/sudoers
 
-# ���s����Jenkins���[�UID����уO���[�vID�ƈ�v�����邱��
 RUN groupadd -g 991 jenkins
 RUN useradd -u 995 -g 991 jenkins
 RUN usermod -aG wheel jenkins
@@ -49,6 +48,9 @@ RUN /usr/bin/postgresql-setup initdb
 ADD ./postgresql.conf /var/lib/pgsql/data/postgresql.conf
 
 RUN chown -v postgres.postgres /var/lib/pgsql/data/postgresql.conf
+
+RUN sed -i -e 's|local   all|#local   all|g' /var/lib/pgsql/data/pg_hba.conf
+RUN sed -i -e 's|host    all|#host    all|g' /var/lib/pgsql/data/pg_hba.conf
 
 RUN echo "host    all             all             0.0.0.0/0               trust" >> /var/lib/pgsql/data/pg_hba.conf
 
